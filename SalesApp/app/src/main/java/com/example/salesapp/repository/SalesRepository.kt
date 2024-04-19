@@ -3,6 +3,7 @@ package com.example.salesapp.repository
 import com.example.salesapp.interfaces.ISalesRepository
 import com.example.salesapp.model.Product
 import com.example.salesapp.model.ProductList
+import com.example.salesapp.model.ProductsDay
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,12 +30,28 @@ class SalesRepository(private val firestore: FirebaseFirestore):ISalesRepository
                 // Handle any errors
                 callback(null)
         }
+    }
 
+    override fun getSalesByDay(callback: (MutableList<ProductsDay>?) -> Unit) {
+        allSalesRef.collection("allsales").get().addOnSuccessListener{ querySnapshot ->
+            val daysList = mutableListOf<ProductsDay>()
+            for (document in querySnapshot.documents) {
+                val productlist = document.toObject(ProductList::class.java)
+                productlist?.let {
+                    daysList.add(ProductsDay(document.id, productlist))
+                }
+            }
+            callback(daysList)
+        } .addOnFailureListener {
+                exception ->
+            // Handle any errors
+            callback(null)
+        }
     }
 
     override fun getTodaysClosestSales(mylatitude:Double,mylongitude:Double,callback: (MutableList<Product>?) -> Unit) {
         val sdf = SimpleDateFormat("yyyy-MM-dd")
-        val currentDate = sdf.format(Date(124,3,12))
+        val currentDate = sdf.format(Date())
         println(currentDate)
         val productList = ArrayList<Product>()
         allSalesRef.collection("allsales").document(currentDate).get().addOnSuccessListener{ querySnapshot ->

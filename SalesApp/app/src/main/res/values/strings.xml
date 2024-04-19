@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SalesApp</string>
+    <string name="app_name">Bargain Hunt</string>
+    <string name="signup"><u>SIGN UP HERE</u></string>
 </resources>

@@ -22,18 +22,18 @@ def do_work():
     page = urlopen(req).read()
     soup = BeautifulSoup(page, "html.parser")
     items = soup.html.body.find("div",{"id":"__next"}).find("main").find("div",class_=re.compile(r"c-geWlrn-ikZmdmp-css")).find("div",{"class":"c-bWWkpE"}).find("div",{"class":"c-geWlrn"}).find("div",{"class":"c-geSCLP"})
-    products = items.find_all("div",class_="c-gAtdfU")
+    products = items.find_all("div",{"data-test-id":"product-card"})
 
     for product in products:
-        p = product.find("a",{"class":"c-cmUoff"}).find("div",{"class":"c-AYTeD"}).find("div",class_=re.compile(r"c-btjDhR"))
+        p = product.find("a",{"class":"c-jafrRC"}).find("div",{"class":"c-hsbTVL"})
         img = p.find("div",class_=re.compile(r"c-gtWDsx-iPJLV-css")).find("span").find_all("img")[2]
         image = img.attrs['src']
         name = img.attrs['alt']
-        sale = p.find("div",class_=re.compile(r"c-dnLyH-jsPNpl-position-top")).find("div",{"class":"c-dhzjXW"}).find("div",class_=re.compile("c-lhTjvo"))
-        desconto = sale.find("label",{"class":"pillLabel"}).find("strong").get_text(strip=True)
-        price = product.find("a",{"class":"c-cmUoff"}).find("div",class_=re.compile("c-jyyxAc")).find("span",{"class":"c-htDMeF"})
-        preco = price.find("span").get_text(strip=True)
+        sale = p.find("div",{"class":"c-jsPNpl"}).find("div",class_=re.compile(r"c-gInMWf-jhTNsr-variant-discountPercentage"))
+        desconto = sale.find("span").get_text(strip=True)
+        preco = product.find("a",{"class":"c-jafrRC"}).find("span",{"class":"c-irxNwi"}).find("span").get_text(strip=True)
         new = {"nome":name,"imagem":image,"preco":preco,"desconto":desconto}
+        print(new)
         all.append(new)
 
     print("scrapping done.")
@@ -71,6 +71,7 @@ def do_work():
 
     x = datetime.datetime.now()
     data = str(x).split(" ")[0]
+    print(data)
 
     cred = credentials.Certificate("serviceAccount.json")
     firebase_admin.initialize_app(cred)
@@ -78,6 +79,7 @@ def do_work():
     if DB is not None:
         doc_ref = DB.collection("allsales").document(data)
         doc_ref.set(resp,merge=True)
+
     
 if __name__ == "__main__":
     do_work()

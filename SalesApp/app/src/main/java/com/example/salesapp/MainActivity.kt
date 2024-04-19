@@ -1,33 +1,36 @@
 package com.example.salesapp
 
+import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.os .Bundle
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.salesapp.adapters.SalesAdapter
-import com.example.salesapp.model.MyNotificationManager
+import com.example.salesapp.model.MyNotificationService
 import com.example.salesapp.model.Product
 import com.example.salesapp.repository.SalesRepository
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     lateinit var recyclerview:RecyclerView
     lateinit var salesAdapter:SalesAdapter
     lateinit var loading: LottieAnimationView
@@ -36,15 +39,31 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigation : BottomNavigationView
     lateinit var searchbox : EditText
     lateinit var close : ImageView
+    lateinit var welcome: TextView
+    lateinit var cardplan : CardView
+    lateinit var settingsbtn : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        welcome = findViewById(R.id.welcome)
+
+        auth = Firebase.auth
+        if(auth.currentUser != null){
+            val email = auth.currentUser!!.email
+            val m = "Hello, "+ email.toString() +"!"
+            welcome.text = m
+        }else{
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+        }
         recyclerview = findViewById(R.id.recycler_view1)
+        cardplan = findViewById(R.id.mycardview)
         loading = findViewById(R.id.loading)
         navigation = findViewById(R.id.bottom_navigation)
         searchbox = findViewById(R.id.search_view)
+        settingsbtn = findViewById(R.id.settingsbtn)
         close = findViewById(R.id.closeimage)
 
         val firebaseDatabase = FirebaseFirestore.getInstance()
@@ -85,8 +104,8 @@ class MainActivity : AppCompatActivity() {
                     overridePendingTransition(0,0)
                     true
                 }
-                R.id.nav_settings ->{
-                    startActivity(Intent(applicationContext,SettingsActivity::class.java))
+                R.id.nav_visualization ->{
+                    startActivity(Intent(applicationContext,ChartsActivity::class.java))
                     overridePendingTransition(0,0)
                     true
                 }
@@ -106,12 +125,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                filter(s.toString());
+                filter(s.toString())
             }
 
         })
+        cardplan.setOnClickListener {
+            showDialog()
+        }
         close.setOnClickListener {
             searchbox.setText("")
+        }
+        settingsbtn.setOnClickListener {
+            val intent = Intent(this,SettingsActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0,0)
         }
     }
 
@@ -140,19 +167,35 @@ class MainActivity : AppCompatActivity() {
         salesAdapter.filteredProducts(filteredList)
     }
 
-    //start listening for sales bigger than 70%
+    fun showDialog(){
+        val dialog : Dialog = Dialog(this,R.style.DialogStyle)
+        dialog.setContentView(R.layout.costum_dialog)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.background_dialog)
+        val btnclose : ImageView = dialog.findViewById(R.id.btn_close)
+        btnclose.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+        })
+        dialog.show()
+    }
+
     fun startListener() {
         // change to today
         println("hello")
-        FirebaseFirestore.getInstance().collection("allsales").document("2024-04-12")
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Log.e(TAG, "Listen failed.", error)
+        FirebaseFirestore.getInstance().collection("allsales").document("2024-04-17")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "listen:error", e)
                     return@addSnapshotListener
-                }else{
-                    val newData = value!!.data!!.get("sales")
-                    println(newData.toString())
+                }
+                else{
+                    if (snapshots != null) {
+                        val produtos = snapshots.data!!.get("sales").toString().split("nome=")
+                        var newrandomproduct = produtos[produtos.size-1].split(",")[0]
 
+                        val serviceintent = Intent(this, MyNotificationService::class.java)
+                        serviceintent.putExtra("randomproduct",newrandomproduct)
+                        startService(serviceintent)
+                    }
                 }
             }
     }

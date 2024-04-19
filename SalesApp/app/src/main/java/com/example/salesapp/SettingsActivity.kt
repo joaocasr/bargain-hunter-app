@@ -3,31 +3,32 @@ package com.example.salesapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Button
+import androidx.cardview.widget.CardView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SettingsActivity : AppCompatActivity() {
-    lateinit var navigation : BottomNavigationView
+    lateinit var signout : CardView
+    lateinit var goback : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        navigation = findViewById(R.id.bottom_navigation3)
+        signout = findViewById(R.id.signoutcard)
+        goback = findViewById(R.id.gobackbutton)
 
-        navigation.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_home -> {
-                    startActivity(Intent(applicationContext,MainActivity::class.java))
-                    overridePendingTransition(0,0)
-                    true
-                }
-                R.id.nav_nearest -> {
-                    startActivity(Intent(applicationContext,NearestActivity::class.java))
-                    overridePendingTransition(0,0)
-                    true
-                }
-                R.id.nav_settings -> true
-                else -> {true}            }
+        goback.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
+        signout.setOnClickListener {
+            val auth = Firebase.auth
+            auth.signOut()
+            val intent = Intent(applicationContext,LoginActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

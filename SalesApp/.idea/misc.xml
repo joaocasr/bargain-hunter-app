@@ -3,23 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1455" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/arrow_goback.xml" value="0.188" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/background_dialog.xml" value="0.1455" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/bg_window.xml" value="0.2255" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/editext_background.xml" value="0.2585" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/fade_image_background.xml" value="0.188" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/gradient_bg.xml" value="0.138" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/gradient_cardview.xml" value="0.2285" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_android.xml" value="0.2245" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.138" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_baseline_radar_24.xml" value="0.2495" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_clear.xml" value="0.2255" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1455" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/ic_linechart.xml" value="0.1455" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/itemcard.xml" value="0.1705" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/myborder.xml" value="0.1705" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/notification_icon.xml" value="0.1665" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/round_corner.xml" value="0.1455" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/drawable/shop_cart.xml" value="0.2255" />
-        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_bar.xml" value="0.176" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_charts.xml" value="0.152" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_linechart.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_nearest.xml" value="0.264" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_payment.xml" value="0.264" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_product_detail.xml" value="0.2" />
-        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_settings.xml" value="0.264" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/activity_visualization.xml" value="0.2" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/closest_view.xml" value="0.2203125" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/costum_dialog.xml" value="0.21770833333333334" />
-        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/notification.xml" value="0.42397914856646396" />
-        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/product_view.xml" value="0.4" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/notification.xml" value="0.264" />
+        <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/layout/product_view.xml" value="0.176" />
         <entry key="..\:/Users/joaop/AndroidStudioProjects/SalesApp/app/src/main/res/menu/menu_items.xml" value="0.20052083333333334" />
       </map>
     </option>

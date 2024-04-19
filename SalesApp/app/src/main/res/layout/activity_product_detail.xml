@@ -73,6 +73,7 @@
                 android:maxLines="3"
                 android:paddingStart="30dp"
                 android:paddingEnd="10dp"
+                android:paddingBottom="15dp"
                 android:text="Nome"
                 android:textColor="@color/white"
                 android:textSize="18sp"

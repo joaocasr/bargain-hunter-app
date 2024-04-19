@@ -33,9 +33,9 @@
 
             <TextView
                 android:id="@+id/txttite"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Subscribe to our plan"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -65,6 +65,7 @@
                 android:text="Features"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -73,30 +74,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:text="Product order"
+                android:text="-Products order\n-Exclusive discounts\n-Personalized offers"
                 android:textColor="@color/grey"
                 android:textSize="11sp" />
-
-            <TextView
-                android:id="@+id/feat2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Exclusive discounts"
-                android:textColor="@color/grey"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="@+id/feat1" />
-
-            <TextView
-                android:id="@+id/feat3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Personalized offers"
-                android:textColor="@color/grey"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="@+id/feat2"/>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +87,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/feat3" />
+                app:layout_constraintBottom_toBottomOf="@+id/feat1" />
 
 
             <TextView

@@ -1,6 +1,5 @@
 package com.example.salesapp
 
-import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +19,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var paybtn : CardView
     lateinit var goback : Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
@@ -34,7 +34,7 @@ class ProductDetailActivity : AppCompatActivity() {
         preco = findViewById(R.id.price_product)
 
         nome.text = intent.getStringExtra("name_product")
-        val strt = "Street\n  "+intent.getStringExtra("street_product")
+        val strt = "Street:\n"+intent.getStringExtra("street_product")
         rua.text = strt
         val lat = intent.getDoubleExtra("latitude_product",0.0)
         val lon = intent.getDoubleExtra("longitude_product",0.0)
@@ -45,7 +45,15 @@ class ProductDetailActivity : AppCompatActivity() {
         Picasso.get().load(url).into(imagem)
 
         paybtn.setOnClickListener (View.OnClickListener{
-            showDialog()
+                val newintent = Intent(this,PaymentActivity::class.java)
+                newintent.putExtra("name_product",intent.getStringExtra("name_product"))
+                newintent.putExtra("discount_product",intent.getStringExtra("discount_product"))
+                newintent.putExtra("imagem_product",intent.getStringExtra("imagem_product"))
+                newintent.putExtra("preco_product",intent.getStringExtra("preco_product"))
+                newintent.putExtra("latitude_product",lat)
+                newintent.putExtra("longitude_product",lon)
+                newintent.putExtra("street_product",intent.getStringExtra("street_product"))
+                startActivity(newintent)
             }
         )
         goback.setOnClickListener(View.OnClickListener {
@@ -54,14 +62,4 @@ class ProductDetailActivity : AppCompatActivity() {
         })
     }
 
-    fun showDialog(){
-        val dialog : Dialog = Dialog(this,R.style.DialogStyle)
-        dialog.setContentView(R.layout.costum_dialog)
-        dialog.window?.setBackgroundDrawableResource(R.drawable.background_dialog)
-        val btnclose : ImageView = dialog.findViewById(R.id.btn_close)
-        btnclose.setOnClickListener(View.OnClickListener {
-            dialog.dismiss()
-        })
-        dialog.show()
-    }
 }

@@ -71,6 +71,9 @@ class NearestActivity : AppCompatActivity() {
             latitude = locSample.latitude
             longitude = locSample.longitude
             changeUI()
+            estado.visibility = View.GONE
+            radar.visibility = View.GONE
+
         }
         locationvm.currentLocationData.observe(this, locationObserver)
 
@@ -82,8 +85,8 @@ class NearestActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_nearest -> true
-                R.id.nav_settings ->{
-                    startActivity(Intent(applicationContext,SettingsActivity::class.java))
+                R.id.nav_visualization ->{
+                    startActivity(Intent(applicationContext,ChartsActivity::class.java))
                     overridePendingTransition(0,0)
                     true
                 }
@@ -96,7 +99,7 @@ class NearestActivity : AppCompatActivity() {
         val m = "Latitude: $latitude º\nLongitude: $longitude º"
         iconplace.visibility = View.VISIBLE
         coordenadas.text = m
-        val s = "Detecting discounts near you..."
+        val s = "Detecting the nearest discounts..."
         estado.text = s
         //println("$latitude;$longitude")
 
@@ -121,9 +124,6 @@ class NearestActivity : AppCompatActivity() {
             recyclerview.adapter = closestadapter
             clickItem(closestadapter)
         }
-        estado.visibility = View.GONE
-        radar.visibility = View.GONE
-
     }
 
     fun clickItem(recyclerAdapter: ClosestSalesAdapter){
