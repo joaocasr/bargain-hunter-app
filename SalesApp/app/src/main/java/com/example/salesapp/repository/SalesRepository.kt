@@ -87,7 +87,7 @@ class SalesRepository(private val firestore: FirebaseFirestore):ISalesRepository
             return@Comparator d1.compareTo(d2)
         }
         produtos.stream().sorted(c).collect(Collectors.toList())
-        //get 5 closest
+        //get 6 closest
         var i =0
         for(p in produtos){
             closest.add(p)

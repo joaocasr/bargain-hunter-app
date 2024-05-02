@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -179,9 +180,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startListener() {
-        // change to today
-        println("hello")
-        FirebaseFirestore.getInstance().collection("allsales").document("2024-04-17")
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val currentDate = sdf.format(Date())
+        FirebaseFirestore.getInstance().collection("allsales").document(currentDate)
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Log.w(TAG, "listen:error", e)
