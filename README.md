@@ -15,7 +15,6 @@ Na imagem presente encontra-se a arquitetura para a aplicação Bargain Hunt. Em
 
 O script python, onde é feito o web scraping do website das vendas, o trata-
 mento dos dados e a localização dos produtos, é armazenado numa virtual ma-
-4 Bernard Georges and João Castro
 chine na Google Cloud. Como primeiro passo, associámos a esta VM uma sched-
 ule para a instância iniciar às 12:55 AM e encerrar às 01:15 AM. Para a autom-
 atização da execução do script utilizámos o job scheduler ’cron’ que é fornecido
@@ -50,7 +49,7 @@ Em (a) encontra-se a página correspondente à listagem de todos os produtos em 
 <img src = "images/detailed.jpg" width=200>
 <img src = "images/notification.jpg" width=200>
 
-Para cada um dos cardviews é possível obter informações específicas relativas aos produtos em questão, como o nome, rua, latitude e longitude e preço. Para além disso, existe um botão de encomendar o produto, que poderia constituir numa fonte de rendimento extra. Esse plano poderia passar por chegar a um acordo em que uma percentagem da venda de até 5\% reverteria para nós, ainda que os custos relativos à distribuição ficariam ao encargo dessas lojas. Em (b) podemos visualizar uma notificação de um novo produto que está em saldos. Para isso utilizou-se um snapshot listener dos dados para a coleção do dia atual, em que caso seja detetada alguma adição é iniciado o nosso serviço de notificações (MyNotificationService), onde personalizámos a notificação avisando o utilizador acerca de um novo produto que tenha sido detetado.
+Para cada um dos cardviews é possível obter informações específicas relativas aos produtos em questão, como o nome, rua, latitude e longitude e preço. Para além disso, existe um botão de encomendar o produto, que poderia constituir numa fonte de rendimento extra. Esse plano poderia passar por chegar a um acordo em que uma percentagem da venda de até 5% reverteria para nós, ainda que os custos relativos à distribuição ficariam ao encargo dessas lojas. Em (b) podemos visualizar uma notificação de um novo produto que está em saldos. Para isso utilizou-se um snapshot listener dos dados para a coleção do dia atual, em que caso seja detetada alguma adição é iniciado o nosso serviço de notificações (MyNotificationService), onde personalizámos a notificação avisando o utilizador acerca de um novo produto que tenha sido detetado.
 %apresentar a aplicação mobile Bargain Hunt, listar algumas das suas funcionalidades, arquitetura, alguns screenshots
 
 ### Visualização
